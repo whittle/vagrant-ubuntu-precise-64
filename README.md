@@ -1,24 +1,31 @@
 ## About
 
-This script will: 
+This script will:
 
  1. download the Ubuntu 12.04 alternate server, 64bit iso
  2. ... do some magic to turn it into a vagrant box file
- 3. output package.box 
+ 3. output package.box
 
 ## Usage
 
     ./build.sh
 
-This should do everything you need. If you don't have 
+This should do everything you need. If you don't have
 mkisofs, install macports, then:
 
     brew install cdrtools
 
+### Jason’s notes
+
+Forked Ben’s repo to change some settings:
+
+ - Larger memory footprint for the sake of cabal-install and GHC
+ - Prefer English over Swedish
+
 ### Ben's notes
 
-Forked Carl's repo, and it sort of worked out of the box. Tweaked 
-office 12.04 release: 
+Forked Carl's repo, and it sort of worked out of the box. Tweaked
+office 12.04 release:
 
  - Downloading 12.04 final release. (Today as of this writing)
  - Checking MD5 to make sure it is the right version
