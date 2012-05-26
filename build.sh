@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# make sure we have dependencies 
+# make sure we have dependencies
 hash mkisofs 2>/dev/null || { echo >&2 "ERROR: mkisofs not found.  Aborting."; exit 1; }
 
 BOX="ubuntu-precise-64"
@@ -36,7 +36,7 @@ ISO_GUESTADDITIONS="/Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditio
 
 # download the installation disk if you haven't already or it is corrupted somehow
 echo "Downloading ubuntu-12.04-alternate-amd64.iso ..."
-if [ ! -e "${ISO_FILENAME}" ] 
+if [ ! -e "${ISO_FILENAME}" ]
 then
    curl --output "${ISO_FILENAME}" -L "${ISO_URL}"
 else
@@ -78,14 +78,14 @@ if [ ! -e "${FOLDER_ISO}/custom.iso" ]; then
   cd "${FOLDER_BASE}"
   chmod u+w "${FOLDER_ISO_CUSTOM}/isolinux" "${FOLDER_ISO_CUSTOM}/isolinux/isolinux.cfg"
   rm "${FOLDER_ISO_CUSTOM}/isolinux/isolinux.cfg"
-  cp isolinux.cfg "${FOLDER_ISO_CUSTOM}/isolinux/isolinux.cfg"  
+  cp isolinux.cfg "${FOLDER_ISO_CUSTOM}/isolinux/isolinux.cfg"
   chmod u+w "${FOLDER_ISO_CUSTOM}/isolinux/isolinux.bin"
 
   # add late_command script
   echo "Add late_command script ..."
   chmod u+w "${FOLDER_ISO_CUSTOM}"
   cp "${FOLDER_BASE}/late_command.sh" "${FOLDER_ISO_CUSTOM}"
-  
+
   echo "Running mkisofs ..."
   mkisofs -r -V "Custom Ubuntu Install CD" \
     -cache-inodes -quiet \
@@ -106,7 +106,7 @@ if ! VBoxManage showvminfo "${BOX}" >/dev/null 2>/dev/null; then
     --basefolder "${FOLDER_VBOX}"
 
   VBoxManage modifyvm "${BOX}" \
-    --memory 360 \
+    --memory 768 \
     --boot1 dvd \
     --boot2 disk \
     --boot3 none \
